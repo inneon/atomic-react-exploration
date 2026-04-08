@@ -1,0 +1,9 @@
+{
+  "name": "atoms",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/atoms/src",
+  "projectType": "library",
+  "tags": ["type:atom"],
+  "// targets": "to see all targets run: nx show project atoms --web",
+  "targets": {}
+}

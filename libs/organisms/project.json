@@ -1,0 +1,9 @@
+{
+  "name": "organisms",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/organisms/src",
+  "projectType": "library",
+  "tags": ["type:organism"],
+  "// targets": "to see all targets run: nx show project organisms --web",
+  "targets": {}
+}
