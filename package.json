@@ -8,7 +8,9 @@
     "precommit:format": "FILES=\"$(git diff --name-only --cached)\"; [ -z \"$FILES\" ] || npx nx format:check --files=\"$FILES\"",
     "precommit:affected": "FILES=\"$(git diff --name-only --cached)\"; [ -z \"$FILES\" ] || npx nx affected -t lint,test,build,typecheck --files=\"$FILES\" --nxBail",
     "precommit:all": "npm run precommit:format && npm run precommit:affected",
-    "prepush:all": "npx nx format:check && npx nx run-many -t lint,test,build,typecheck --all --nxBail"
+    "prepush:all": "npx nx format:check && npx nx run-many -t lint,test,build,typecheck --all --nxBail",
+    "storybook": "CI=1 STORYBOOK_DISABLE_TELEMETRY=1 npx nx run-many -t storybook --all --nxBail",
+    "build-storybook": "CI=1 STORYBOOK_DISABLE_TELEMETRY=1 npx nx run-many -t build-storybook --all --nxBail"
   },
   "private": true,
   "devDependencies": {
@@ -21,10 +23,12 @@
     "@nx/eslint-plugin": "22.6.4",
     "@nx/js": "22.6.4",
     "@nx/react": "^22.6.4",
+    "@nx/storybook": "22.6.4",
     "@nx/vite": "22.6.4",
     "@nx/vitest": "22.6.4",
     "@nx/web": "22.6.4",
     "@nx/workspace": "22.6.4",
+    "@storybook/react-vite": "^10.1.0",
     "@swc-node/register": "~1.11.1",
     "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
@@ -51,6 +55,8 @@
     "jsdom": "~22.1.0",
     "nx": "22.6.4",
     "prettier": "~3.6.2",
+    "storybook": "^10.1.0",
+    "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
