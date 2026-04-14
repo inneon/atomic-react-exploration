@@ -1,5 +1,7 @@
 import { render } from "@testing-library/react";
+import "jest-styled-components";
 import { Button } from "./button";
+
 describe("button", () => {
   it("renders the button with the correct text", () => {
     const buttonText = "Click me";
@@ -39,5 +41,29 @@ describe("button", () => {
 
     expect(buttonElement.disabled).toBe(true);
     expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  describe("highlighting", () => {
+    test("hover applies highlight when enabled", async () => {
+      const { getByRole } = render(<Button>Click me</Button>);
+      const btn = getByRole("button");
+
+      expect(btn).toHaveStyleRule(
+        "filter",
+        expect.stringContaining("drop-shadow"),
+        {
+          modifier: ":hover",
+        },
+      );
+    });
+
+    test("hover applies highlight when enabled", async () => {
+      const { getByRole } = render(<Button disabled>Click me</Button>);
+      const btn = getByRole("button");
+
+      expect(btn).toHaveStyleRule("filter", expect.stringContaining("none"), {
+        modifier: ":hover",
+      });
+    });
   });
 });

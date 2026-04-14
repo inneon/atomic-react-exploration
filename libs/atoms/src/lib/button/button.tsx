@@ -17,6 +17,13 @@ const StyledButton = styled.button<{ disabled?: boolean }>`
   );
   border-radius: 10px;
   border: none;
+  :hover {
+    filter: ${(props) =>
+      props.disabled
+        ? "none"
+        : `drop-shadow(0px 0px 10px ${palette.highlight2Shadow})`};
+    outline: 0;
+  }
 
   font-weight: 600;
   color: ${(props) =>
