@@ -2,10 +2,23 @@ import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 
 import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
   stories: ["../src/lib/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"],
   addons: [],
+  async viteFinal(viteConfig) {
+    return mergeConfig(viteConfig, {
+      server: {
+        fs: {
+          allow: [
+            resolve(import.meta.dirname, ".."),
+            resolve(import.meta.dirname, "../../../node_modules"),
+          ],
+        },
+      },
+    });
+  },
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {
